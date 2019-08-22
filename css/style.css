@@ -1,20 +1,45 @@
-#stillForest{
+/*********************
+	WELCOME SCREEN
+*********************/
+/* Background Video */
+#forest{
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	min-width: 100%;
 	min-height: 100%;
 	z-index: -1;
+	object-fit: contain;
 }
-.welcomeScreen{
-	background: black;
-}
+
+/* Text */
 .spooky{
-	margin-top: 15%;
+	margin-top: 10%;
 	font-family: 'Finger Paint', cursive;
 	font-size: 50px;
 	color:white;
 	text-shadow: 4px 4px rgb(255, 0, 0);
 	text-align: center;
 	position: relative;
+}
+
+/******************
+	GAME PAGE
+******************/
+
+/* Jumbotron */
+.jumbotron{
+	background: rgba(0,0,0,0.5);
+	color: white;
+	text-align: center;
+	font-family: 'Finger Paint', cursive;
+}
+
+/* Card */
+.card{
+	margin: 20px;
+	text-align: center;
+	background: rgba(0,0,0,0.5);
+	color: black;
+	font-family: 'Finger Paint', cursive;
 }
