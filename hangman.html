@@ -35,7 +35,7 @@
     <!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">HANGMAN</h1>
+            <h1 class="display-5">HANGMAN</h1>
             <p class="lead">GUESS THE WORD...BEFORE IT'S TOO LATE...</p>
             <p id="hangmanTextUpper"></p>
         </div>
@@ -44,7 +44,8 @@
     <!-- Card Body -->
     <div class="card">
         <div class="card-body">
-            <p id="hangmanTextLower">Press any key to get started!</p>
+			<input id="hangmanTextLower" type="text" onkeydown="keyPress()" placeholder="Type any letter to get started!">
+            <!-- <p id="hangmanTextLower">Press any key to get started!</p> -->
         </div>
     </div>
     

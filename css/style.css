@@ -33,6 +33,7 @@
 	color: white;
 	text-align: center;
 	font-family: 'Finger Paint', cursive;
+	padding-bottom:0;
 }
 
 /* Card */
@@ -40,6 +41,16 @@
 	margin: 20px;
 	text-align: center;
 	background: rgba(0,0,0,0.5);
-	color: black;
+	color: white;
 	font-family: 'Finger Paint', cursive;
+}
+
+/* hangmanTextUpper */
+#hangmanTextUpper span{
+	font-size: 50px;
+}
+
+input{
+ width: 50%;
+ text-align: center;
 }

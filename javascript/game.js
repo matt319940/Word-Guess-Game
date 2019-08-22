@@ -16,9 +16,16 @@ var words = [
     "CURSED",
     "INTRUDER",
     "ASSASSIN",
+	"SPOOKY",
     "TAXES",
+	"MOIST",
     "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH",
     "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEK",
+	"FEAR",
+	"FRIGHT",
+	"DREAD",
+	"HORROR",
+	"TERROR",
 ];
 
 // Creates a random number from 1 to the number of items in the words array
@@ -26,12 +33,31 @@ var randomNumber = Math.floor(Math.random() * words.length);
 
 // Assigns that random number as an index of the words array and stores that word
 var randomWord = words[randomNumber];
-console.log(randomWord);
+console.log("The random word is: " + randomWord);
 
-// var upperDisplay = document.getElementById("hangmanTextUpper");
-// for(var i = 0; i < words[randomNumber].length; i++)
-// {
-//     var newP = document.createElement("span");
-//     newP.textContent = " _ ";
-//     upperDisplay.append(newP);
-// }
+// Hidden letters emtpy array
+var hiddenLetters = [];
+
+// Array for letters guessed
+var guessedLetters = [];
+
+// Function for initializing the game
+function initialize(){
+	
+	for(var i = 0; i < randomWord.length; i++){
+		hiddenLetters.push(" _ ");
+		var newSpan = document.createElement("span");
+		newSpan.textContent = hiddenLetters[i];
+		document.getElementById("hangmanTextUpper").append(newSpan);
+	}
+	console.log(hiddenLetters);
+}
+
+function keyPress(){
+	var letter = document.getElementById("hangmanTextLower").value;
+	console.log(letter);
+}
+
+//Function Calls
+initialize();
+
