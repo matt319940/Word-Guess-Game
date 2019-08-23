@@ -1,33 +1,5 @@
 // Array of random "scary" words
-var words = [
-    "MURDER",
-    "FREDDY",
-    "JASON",
-    "MICHAEL",
-    "BLOOD",
-    "SILENCE",
-    "DECAPITATION",
-    "STRANGULATION",
-    "ASPHYXIATION",
-    "NIGHTMARE",
-    "SHADOWS",
-    "FRIGHTENED",
-    "SCREAMS",
-    "CURSED",
-    "INTRUDER",
-    "ASSASSIN",
-	"SPOOKY",
-    "TAXES",
-	"MOIST",
-    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH",
-    "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEK",
-	"FEAR",
-	"FRIGHT",
-	"DREAD",
-	"HORROR",
-    "TERROR",
-    "DISMEMBERMENT",
-];
+var words = ["MURDER", "FREDDY", "JASON", "MICHAEL", "BLOOD", "SILENCE", "DECAPITATION", "STRANGULATION", "ASPHYXIATION", "NIGHTMARE", "SHADOWS", "FRIGHTENED", "SCREAMS", "CURSED", "INTRUDER", "ASSASSIN", "SPOOKY", "TAXES", "MOIST", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH", "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEK", "FEAR", "FRIGHT", "DREAD", "HORROR", "TERROR", "DISMEMBERMENT",];
 // Number of attempts before death
 var attempts = 6;
 
@@ -58,18 +30,26 @@ function initialize(){
 	for(var i = 0; i < randomWord.length; i++){
 		hiddenLetters.push(" _ ");
 		var newSpan = document.createElement("span");
+		newSpan.setAttribute("class", i);
 		newSpan.textContent = hiddenLetters[i];
 		document.getElementById("hangmanTextUpper").append(newSpan);
 	}
 	console.log("hiddenLetter array = " + hiddenLetters);
 }
 
+function hiddenRefresh(){
+		for(var i = 0; i < randomWord.length; i++){
+		if(
+	}
+}	
+
 // Function to get keypress
 function keyPress(){
-	document.getElementById("hangmanTextLower").textContent = event.key.toUpperCase();
+
 	guessedLetters[counter] = event.key.toUpperCase();
+	document.getElementById("hangmanTextLower").textContent = guessedLetters;
 	counter++;
-	console.log("guessedLetters array = " + guessedLetters);
+
 	
 	for(var i = 0; i < guessedLetters.length; i++){
 		for(var j = 0; j < randomWord.length; j++)
@@ -79,7 +59,7 @@ function keyPress(){
 	}
 	console.log("Counter = " + counter);
 	console.log("hiddenLetters array = " + hiddenLetters);
-	
+	// hiddenRefresh();
 }
 
 //Function Calls
