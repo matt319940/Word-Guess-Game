@@ -31,56 +31,58 @@ var words = [
 // Number of attempts before death
 var attempts = 6;
 
+// Number of wrong & wins
+
+var wins = 0;
+var wrong = 0;
+
 // Creates a random number from 1 to the number of items in the words array
 var randomNumber = Math.floor(Math.random() * words.length);
 
 // Assigns that random number as an index of the words array and stores that word
 var randomWord = words[randomNumber];
 console.log("The random word is: " + randomWord);
+console.log("randomWord.length = " + randomWord.length);
 
 // Array for hidden letters
 var hiddenLetters = [];
 
-// Array for letters guessed
+// Array and variable for letters guessed
 var guessedLetters = [];
+var letter;
+var counter = 0;
 
 // Function for initializing the game
 function initialize(){
 	
 	for(var i = 0; i < randomWord.length; i++){
-        if(hiddenLetters[i] >= "A" && hiddenLetters[i] <= "Z"){
-            continue;
-        }
 		hiddenLetters.push(" _ ");
 		var newSpan = document.createElement("span");
 		newSpan.textContent = hiddenLetters[i];
 		document.getElementById("hangmanTextUpper").append(newSpan);
 	}
-	console.log(hiddenLetters);
+	console.log("hiddenLetter array = " + hiddenLetters);
 }
 
 // Function to get keypress
 function keyPress(){
-    for(var i = 0; i < attempts; i++)
-    {
-    var letter = document.getElementById("hangmanTextLower").value.toUpperCase();
-    // if(onkeydown == 13){
-    //     document.getElementById("hangmanTextLower").textContent("");
-    }
-    guessedLetters[i] = letter;
-    
-        for(var j = 0; j < randomWord.length; j++){
-            if(randomWord.charAt(j) == letter){
-                hiddenLetters[j] = letter;
-            }
-
-        }
-    }
-    console.log(letter);
-    console.log(hiddenLetters);
+	document.getElementById("hangmanTextLower").textContent = event.key.toUpperCase();
+	guessedLetters[counter] = event.key.toUpperCase();
+	counter++;
+	console.log("guessedLetters array = " + guessedLetters);
+	
+	for(var i = 0; i < guessedLetters.length; i++){
+		for(var j = 0; j < randomWord.length; j++)
+			if(randomWord.charAt(j) == guessedLetters[i]){
+				hiddenLetters[j] = guessedLetters[i];
+				}
+	}
+	console.log("Counter = " + counter);
+	console.log("hiddenLetters array = " + hiddenLetters);
+	
 }
 
 //Function Calls
-// document.getElementById("hangmanTextLower").addEventListener("keydown", initialize());
 initialize();
+
 
