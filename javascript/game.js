@@ -48,6 +48,9 @@ var guessedLetters = [];
 function initialize(){
 	
 	for(var i = 0; i < randomWord.length; i++){
+        if(hiddenLetters[i] >= "A" && hiddenLetters[i] <= "Z"){
+            continue;
+        }
 		hiddenLetters.push(" _ ");
 		var newSpan = document.createElement("span");
 		newSpan.textContent = hiddenLetters[i];
@@ -61,8 +64,8 @@ function keyPress(){
     for(var i = 0; i < attempts; i++)
     {
     var letter = document.getElementById("hangmanTextLower").value.toUpperCase();
-    if(onkeydown == 13){
-        document.getElementById("hangmanTextLower").textContent("");
+    // if(onkeydown == 13){
+    //     document.getElementById("hangmanTextLower").textContent("");
     }
     guessedLetters[i] = letter;
     
@@ -78,5 +81,6 @@ function keyPress(){
 }
 
 //Function Calls
+// document.getElementById("hangmanTextLower").addEventListener("keydown", initialize());
 initialize();
 
