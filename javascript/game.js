@@ -25,8 +25,11 @@ var words = [
 	"FRIGHT",
 	"DREAD",
 	"HORROR",
-	"TERROR",
+    "TERROR",
+    "DISMEMBERMENT",
 ];
+// Number of attempts before death
+var attempts = 6;
 
 // Creates a random number from 1 to the number of items in the words array
 var randomNumber = Math.floor(Math.random() * words.length);
@@ -35,7 +38,7 @@ var randomNumber = Math.floor(Math.random() * words.length);
 var randomWord = words[randomNumber];
 console.log("The random word is: " + randomWord);
 
-// Hidden letters emtpy array
+// Array for hidden letters
 var hiddenLetters = [];
 
 // Array for letters guessed
@@ -53,9 +56,25 @@ function initialize(){
 	console.log(hiddenLetters);
 }
 
+// Function to get keypress
 function keyPress(){
-	var letter = document.getElementById("hangmanTextLower").value;
-	console.log(letter);
+    for(var i = 0; i < attempts; i++)
+    {
+    var letter = document.getElementById("hangmanTextLower").value.toUpperCase();
+    if(onkeydown == 13){
+        document.getElementById("hangmanTextLower").textContent("");
+    }
+    guessedLetters[i] = letter;
+    
+        for(var j = 0; j < randomWord.length; j++){
+            if(randomWord.charAt(j) == letter){
+                hiddenLetters[j] = letter;
+            }
+
+        }
+    }
+    console.log(letter);
+    console.log(hiddenLetters);
 }
 
 //Function Calls
