@@ -137,7 +137,6 @@ function keyPress(){
 //Function Calls
 initialize();
 
-var audo = new Audio('./audio/wind.wav');
-Audio.play();
+
 
 
