@@ -1,3 +1,4 @@
+
 // Array of random "scary" words
 var words = ["MURDER", "FREDDY", "JASON", "MICHAEL", "BLOOD", "SILENCE", "DECAPITATION", "STRANGULATION", "ASPHYXIATION", "NIGHTMARE", "SHADOWS", "FRIGHTENED", "SCREAMS", "CURSED", "INTRUDER", "ASSASSIN", "SPOOKY", "TAXES", "MOIST", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH", "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEK", "FEAR", "FRIGHT", "DREAD", "HORROR", "TERROR", "DISMEMBERMENT",];
 
@@ -6,6 +7,7 @@ var attempts = 6;
 
 // Number of wrong & wins
 var wins = 0;
+var lost = 0;
 var wrong = 0;
 
 
@@ -47,64 +49,89 @@ function refresh(){
 	}
 }	
 
-// Function that checks if you won
-function ifWon(){
-	
-	var playAgain = false;
-	if(randomWord == hiddenLetters.join("")){
-		setTimeout(function(){ playAgain = confirm("You Won! Play again?"); }, 50);
-		setTimeout(function(){ if(playAgain) location.reload();}, 51);
-	}
-
-}
-
-// Function that checks if you lost
-function ifLost(correct){
-	
-	var dup = isDuplicate();		
-	if(correct == 0 && dup !== true)
-		wrong++;
-	
-	document.getElementById("wrong").textContent = "Remaining Attempts: " + (attempts - wrong);
-		
-	if((attempts - wrong) == 0 ){
-		alert("You lose");
-		location.reload();
-		}
-	
-}
-
 // Checks for duplicates
 function isDuplicate(){
+
 	for(var i = 0; i < guessedLetters.length - 1; i++){
 		if(guessedLetters[counter] == guessedLetters[i])
 			return true;
 	}
 }
 
+function reset(){
+	setTimeout(function(){
+		wrong = 0;
+		randomNumber = Math.floor(Math.random() * words.length);
+		randomWord = words[randomNumber];
+		console.log("The random word is: " + randomWord);
+		hiddenLetters = [];
+		guessedLetters = [];
+		counter = 0;
+		document.getElementById("hangmanTextUpper").textContent = "";
+		document.getElementById("hangmanTextLower").textContent = "Press any key to get started!";
+		document.getElementById("wrong").textContent = "";
+		initialize();
+	}, 52);
+}
+
+// Function that checks if you won
+function ifWon(){
+	
+	var playAgain = false;
+	if(randomWord == hiddenLetters.join("")){
+
+		// added setTimeout since the confirm pop is process blocking
+		setTimeout(function(){ playAgain = confirm("You Won! Play again?"); }, 50);
+		setTimeout(function(){ if(playAgain) reset();}, 51);
+		wins++;
+		document.getElementById("wins").textContent = "Wins: " + wins;
+		document.getElementById("losses").textContent = "Losses: " + lost;
+	}
+
+}
+
+// Function that checks if you lost
+function ifLost(correct){		
+
+	if(correct == 0 && isDuplicate() !== true)
+		wrong++;
+	
+	document.getElementById("wrong").textContent = "Remaining Attempts: " + (attempts - wrong);
+		
+	if((attempts - wrong) == 0 ){
+		alert("You lose! The word was '" + randomWord + "'");
+		reset();
+
+		lost++;
+		document.getElementById("wins").textContent = "Wins: " + wins;
+		document.getElementById("losses").textContent = "Losses: " + lost;
+		}
+	
+}
+
+
 // Function to run all other functions upon keyPress
 function keyPress(){
 
-	guessedLetters[counter] = event.key.toUpperCase();
-	document.getElementById("hangmanTextLower").textContent = "Guessed Letters: " + guessedLetters;
-	
-	var correct = 0;
+	guessedLetters[counter] = event.key.toUpperCase();	
 
-	
+	var correct = 0;
 	for(var i = 0; i < randomWord.length; i++){
 		if(guessedLetters[counter] == randomWord.charAt(i)){
 			hiddenLetters[i] = guessedLetters[counter];	
 			correct++;
 			}
 	}
-	
-	
 
-	refresh();
-	ifWon();
-	ifLost(correct);
-	
-	counter++;
+
+	if(isDuplicate() !== true && (guessedLetters[counter].charCodeAt(0) >= 65 && guessedLetters[counter].charCodeAt(0) <= 90 && guessedLetters[counter].length <= 1)){
+		counter++;
+		document.getElementById("hangmanTextLower").textContent = "Guessed Letters: " + guessedLetters;
+
+		refresh();
+		ifWon();
+		ifLost(correct);
+	}
 }
 
 //Function Calls
