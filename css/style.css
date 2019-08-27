@@ -1,6 +1,7 @@
 /*********************
 	WELCOME SCREEN
 *********************/
+
 /* Background Video */
 #forest{
 	position: fixed;
@@ -12,6 +13,7 @@
 	object-fit: contain;
 }
 
+
 /* Text */
 .spooky{
 	margin-top: 5%;
@@ -21,11 +23,39 @@
 	text-shadow: 4px 4px rgb(255, 0, 0);
 	text-align: center;
 	position: relative;
+	cursor: default;
+	animation-name: transition;
+	animation-duration: 6s;
 }
+
+@keyframes transition{
+	from {color: red; opacity: 0;}
+	to {color: white; opacity: 1;}
+}
+
+/* Options */
+#continue, #end{
+	cursor: pointer;
+	transition: color 1s;
+}
+#continue:hover, #end:hover{
+	color: rgb(255, 0, 0);
+	text-shadow: 4px 4px white;
+}
+
 
 /******************
 	GAME PAGE
 ******************/
+/* Body */
+.jumbotron, .card{
+	animation-name: transition2;
+	animation-duration: 6s;
+}
+@keyframes transition2{
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
 
 /* Jumbotron */
 .jumbotron{
