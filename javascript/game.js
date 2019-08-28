@@ -1,6 +1,6 @@
 
 // Array of random "scary" words
-var words = ["MURDER", "BLOOD", "SILENCE", "DECAPITATION", "STRANGULATION", "ASPHYXIATION", "NIGHTMARE", "SHADOWS", "FRIGHTENED", "SCREAMS", "CURSED", "INTRUDER", "ASSASSIN", "SPOOKY", "TAXES", "MOIST", "AAAAAAAAAAAAAAAAAAAAAH", "EEEEEEEEEEEEEEEEEEEEEK", "FEAR", "FRIGHT", "DREAD", "HORROR", "TERROR", "DISMEMBERMENT", "AGONIZING", "DISGUSTING", "EVIL", "EERIE", "FUNEREAL", "GHOUL", "GRUESOME", "HELL", "MORBID", "SPECTRAL", "PANIC", "SINISTER", "BLEAK",];
+var words = ["MICHAEL\xa0MEYERS", "JASON\xa0VOORHEES", "FREDDY\xa0KRUEGER", "MURDER", "BLOOD", "SILENCE", "DECAPITATION", "STRANGULATION", "ASPHYXIATION", "NIGHTMARE", "SHADOWS", "FRIGHTENED", "SCREAMS", "CURSED", "INTRUDER", "ASSASSIN", "SPOOKY", "TAXES", "MOIST", "AAAAAAAAAAAAAAAAAAAAAH", "EEEEEEEEEEEEEEEEEEEEEK", "FEAR", "FRIGHT", "DREAD", "HORROR", "TERROR", "DISMEMBERMENT", "AGONIZING", "DISGUSTING", "EVIL", "EERIE", "FUNEREAL", "GHOUL", "GRUESOME", "HELL", "MORBID", "SPECTRAL", "PANIC", "SINISTER", "BLEAK",];
 
 // Number of attempts before death
 var attempts = 6;
@@ -28,10 +28,16 @@ var counter = 0;
 // Function for initializing upper display area
 function initialize(){
 	
-	// displays " _ " for every letter in hiddenLetters
+	// displays " _ " for every letter in hiddenLetters and adds spaces if randomWord has a space
 	for(var i = 0; i < randomWord.length; i++){
-		hiddenLetters.push(" _ ");
-		document.getElementById("hangmanTextUpper").textContent += hiddenLetters[i];
+		if(randomWord[i] == "\xa0"){
+			hiddenLetters.push("\xa0");
+			document.getElementById("hangmanTextUpper").textContent += hiddenLetters[i];
+		}
+		else{
+			hiddenLetters.push(" _ ");
+			document.getElementById("hangmanTextUpper").textContent += hiddenLetters[i];
+		}
 	}
 }
 
@@ -76,7 +82,7 @@ function reset(){
 
 // Function that checks if you won
 function ifWon(){
-	
+
 	var playAgain = false;
 	if(randomWord == hiddenLetters.join("")){
 
